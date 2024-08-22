@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Jesushf;
 
-public class BTGuard : BehaviorTree
+public class BTGuard : MonoBehaviour
 {
     [SerializeField] private Transform[] _waypoints;
     [HideInInspector] public Transform Target = null;
     [HideInInspector] public float AttackCounter = 0f;
+    private BehaviorTree _behaviorTree = null;
 
     public static float SPEED { get { return 2f; } }
     public static float FOV_RANGE { get { return 6f; } }
@@ -14,7 +16,7 @@ public class BTGuard : BehaviorTree
     public static float ATTACK_TIME { get { return 1f; } }
     public static float PATROL_WAIT_TIME { get { return 1f; } }
 
-    protected override Node SetupTree()
+    private void Awake()
     {
         Node root = new Selector(new List<Node>
         {
@@ -35,6 +37,13 @@ public class BTGuard : BehaviorTree
             })
         });
 
-        return root;
+        Assert.IsNotNull(root);
+        _behaviorTree = new BehaviorTree(root);
+        Assert.IsNotNull(_behaviorTree);
+    }
+
+    private void Update()
+    {
+        _behaviorTree.UpdateTree();
     }
 }

@@ -1,20 +1,16 @@
-using UnityEngine;
-using UnityEngine.Assertions;
-
 namespace Jesushf
 {
-    public abstract class BehaviorTree : MonoBehaviour
+    public class BehaviorTree
     {
         private Node _root = null;
         private NodeStatus _state = NodeStatus.Running;
 
-        private void Start()
+        public BehaviorTree(Node root)
         {
-            _root = SetupTree();
-            Assert.IsNotNull(_root);
+            _root = root;
         }
 
-        private void Update()
+        public void UpdateTree()
         {
             if (_state != NodeStatus.Running)
             {
@@ -24,7 +20,5 @@ namespace Jesushf
 
             _state = _root.OnUpdate();
         }
-
-        protected abstract Node SetupTree();
     }
 }
