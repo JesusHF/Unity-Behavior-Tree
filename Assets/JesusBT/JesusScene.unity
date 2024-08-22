@@ -2009,11 +2009,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eefaca351ca8bb4aa65ac7c595a5658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
+  _waypoints:
   - {fileID: 191396254}
   - {fileID: 983162100}
   - {fileID: 1780148057}
   - {fileID: 1994130891}
+  Target: {fileID: 0}
+  AttackCounter: 0
 --- !u!1 &1994130890
 GameObject:
   m_ObjectHideFlags: 0

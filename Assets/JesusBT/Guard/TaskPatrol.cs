@@ -11,10 +11,6 @@ namespace Jesushf
         private int _currentWaypointIndex = 0;
         private Transform[] _waypoints;
 
-        private float _waitTime = 1f; // in seconds
-        private float _waitCounter = 0f;
-        private bool _waiting = false;
-
         public TaskPatrol(Transform transform, Transform[] waypoints)
         {
             _transform = transform;
@@ -26,34 +22,22 @@ namespace Jesushf
 
         public override void OnEnter()
         {
+            _animator.SetBool("Walking", true);
             _currentWaypointIndex = GetClosestWaypointIndex();
-            _waiting = true;
         }
 
         public override NodeStatus OnUpdate()
         {
-            if (_waiting)
+            Transform currentWaypoint = _waypoints[_currentWaypointIndex];
+            if (Vector3.Distance(_transform.position, currentWaypoint.position) < 0.01f)
             {
-                _waitCounter += Time.deltaTime;
-                if (_waitCounter >= _waitTime)
-                {
-                    _waiting = false;
-                    _animator.SetBool("Walking", true);
-                }
+                _transform.position = currentWaypoint.position;
+                return NodeStatus.Success;
             }
             else
             {
-                Transform currentWaypoint = _waypoints[_currentWaypointIndex];
-                if (Vector3.Distance(_transform.position, currentWaypoint.position) < 0.01f)
-                {
-                    _transform.position = currentWaypoint.position;
-                    return NodeStatus.Success;
-                }
-                else
-                {
-                    _transform.position = Vector3.MoveTowards(_transform.position, currentWaypoint.position, BTGuard.SPEED * Time.deltaTime);
-                    _transform.LookAt(currentWaypoint.position);
-                }
+                _transform.position = Vector3.MoveTowards(_transform.position, currentWaypoint.position, BTGuard.SPEED * Time.deltaTime);
+                _transform.LookAt(currentWaypoint.position);
             }
 
             return NodeStatus.Running;
@@ -61,8 +45,6 @@ namespace Jesushf
 
         public override void OnExit()
         {
-            _waitCounter = 0f;
-            _waiting = true;
             _animator.SetBool("Walking", false);
         }
 
