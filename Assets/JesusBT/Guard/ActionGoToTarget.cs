@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Jesushf
 {
-    public class TaskGoToTarget : Action
+    public class ActionGoToTarget : Action
     {
         private Transform _transform = null;
         private Animator _animator = null;
 
-        public TaskGoToTarget(Transform transform)
+        public ActionGoToTarget(Transform transform)
         {
             _transform = transform;
         }

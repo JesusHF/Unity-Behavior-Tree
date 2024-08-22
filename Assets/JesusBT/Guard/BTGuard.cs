@@ -23,17 +23,17 @@ public class BTGuard : MonoBehaviour
             new Sequence(new List<Node>
             {
                 new CheckEnemyInAttackRange(this.transform),
-                new TaskAttack(this.transform),
+                new ActionAttack(this.transform),
             }),
             new Sequence(new List<Node>
             {
                 new CheckEnemyInFOVRange(this.transform),
-                new TaskGoToTarget(this.transform),
+                new ActionGoToTarget(this.transform),
             }),
             new Sequence(new List<Node>
             {
                 new ActionDelay(PATROL_WAIT_TIME),
-                new TaskPatrol(this.transform, _waypoints),
+                new ActionPatrol(this.transform, _waypoints),
             })
         });
 

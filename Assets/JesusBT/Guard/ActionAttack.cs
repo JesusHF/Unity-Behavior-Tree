@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 namespace Jesushf
 {
-    public class TaskAttack : Action
+    public class ActionAttack : Action
     {
         private Animator _animator;
         private BTGuard _guard = null;
@@ -11,7 +11,7 @@ namespace Jesushf
         private Transform _lastTarget;
         private EnemyManager _enemyManager;
 
-        public TaskAttack(Transform transform)
+        public ActionAttack(Transform transform)
         {
             _animator = transform.GetComponent<Animator>();
             _guard = transform.GetComponent<BTGuard>();

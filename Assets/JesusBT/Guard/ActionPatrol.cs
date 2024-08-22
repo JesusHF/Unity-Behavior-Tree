@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 namespace Jesushf
 {
-    public class TaskPatrol : Action
+    public class ActionPatrol : Action
     {
         private Transform _transform;
         private Animator _animator;
@@ -11,7 +11,7 @@ namespace Jesushf
         private int _currentWaypointIndex = 0;
         private Transform[] _waypoints;
 
-        public TaskPatrol(Transform transform, Transform[] waypoints)
+        public ActionPatrol(Transform transform, Transform[] waypoints)
         {
             _transform = transform;
             _animator = transform.GetComponent<Animator>();
