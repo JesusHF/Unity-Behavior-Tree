@@ -22,7 +22,7 @@ namespace Jesushf
             if (t == null)
             {
                 Collider[] colliders = Physics.OverlapSphere(
-                    _transform.position, BTGuard.fovRange, _enemyLayerMask);
+                    _transform.position, BTGuard.FOV_RANGE, _enemyLayerMask);
 
                 if (colliders.Length > 0)
                 {

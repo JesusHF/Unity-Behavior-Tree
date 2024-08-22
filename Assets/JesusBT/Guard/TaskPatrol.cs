@@ -51,7 +51,7 @@ namespace Jesushf
                 }
                 else
                 {
-                    _transform.position = Vector3.MoveTowards(_transform.position, currentWaypoint.position, BTGuard.speed * Time.deltaTime);
+                    _transform.position = Vector3.MoveTowards(_transform.position, currentWaypoint.position, BTGuard.SPEED * Time.deltaTime);
                     _transform.LookAt(currentWaypoint.position);
                 }
             }

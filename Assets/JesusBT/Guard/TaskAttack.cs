@@ -11,9 +11,6 @@ namespace Jesushf
         private Transform _lastTarget;
         private EnemyManager _enemyManager;
 
-        private float _attackTime = 1f;
-        private float _attackCounter = 0f;
-
         public TaskAttack(Transform transform)
         {
             _animator = transform.GetComponent<Animator>();
@@ -37,18 +34,16 @@ namespace Jesushf
                 _lastTarget = target;
             }
 
-            _attackCounter += Time.deltaTime;
-            if (_attackCounter >= _attackTime)
+            _guard.AttackCounter += Time.deltaTime;
+            if (_guard.AttackCounter >= BTGuard.ATTACK_TIME)
             {
+                _guard.AttackCounter = 0f;
                 bool enemyIsDead = _enemyManager.TakeHit();
                 if (enemyIsDead)
                 {
-                    return NodeStatus.Success;
+                    _enemyManager = null;
                 }
-                else
-                {
-                    _attackCounter = 0f;
-                }
+                return NodeStatus.Success;
             }
 
             return NodeStatus.Running;

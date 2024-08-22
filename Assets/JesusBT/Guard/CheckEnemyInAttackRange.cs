@@ -22,7 +22,7 @@ namespace Jesushf
                 return NodeStatus.Failure;
             }
 
-            if (Vector3.Distance(_transform.position, target.position) <= BTGuard.attackRange)
+            if (Vector3.Distance(_transform.position, target.position) <= BTGuard.ATTACK_RANGE)
             {
                 _animator.SetBool("Attacking", true);
                 _animator.SetBool("Walking", false);

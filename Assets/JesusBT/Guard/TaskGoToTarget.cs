@@ -22,12 +22,12 @@ namespace Jesushf
         {
             BTGuard guard = _transform.GetComponent<BTGuard>();
             Transform target = guard.Target;
-            if (Vector3.Distance(_transform.position, target.position) <= BTGuard.attackRange)
+            if (Vector3.Distance(_transform.position, target.position) <= BTGuard.ATTACK_RANGE)
             {
                 return NodeStatus.Success;
             }
 
-            _transform.position = Vector3.MoveTowards(_transform.position, target.position, BTGuard.speed * Time.deltaTime);
+            _transform.position = Vector3.MoveTowards(_transform.position, target.position, BTGuard.SPEED * Time.deltaTime);
             _transform.LookAt(target.position);
             return NodeStatus.Running;
         }

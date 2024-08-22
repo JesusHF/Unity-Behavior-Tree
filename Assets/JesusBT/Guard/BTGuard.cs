@@ -5,12 +5,13 @@ using Jesushf;
 public class BTGuard : BehaviorTree
 {
     public Transform[] waypoints;
-    public static float speed { get { return 2f; } }
-    public static float fovRange { get { return 6f; } }
-    public static float attackRange { get { return 1f; } }
+    [HideInInspector] public Transform Target = null;
+    [HideInInspector] public float AttackCounter = 0f;
 
-    private Transform _target = null;
-    public Transform Target { get => _target; set => _target = value; }
+    public static float SPEED { get { return 2f; } }
+    public static float FOV_RANGE { get { return 6f; } }
+    public static float ATTACK_RANGE { get { return 1f; } }
+    public static float ATTACK_TIME { get { return 1f; } }
 
     protected override Node SetupTree()
     {
