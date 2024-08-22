@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Jesushf
 {
-    public class CheckEnemyInAttackRange : Action
+    public class IsEnemyInAttackRange : Condition
     {
         private Transform _transform;
         private Animator _animator;
 
-        public CheckEnemyInAttackRange(Transform transform)
+        public IsEnemyInAttackRange(Transform transform)
         {
             _transform = transform;
             _animator = transform.GetComponent<Animator>();

@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace Jesushf
 {
-    public class CheckEnemyInFOVRange : Action
+    public class IsEnemyInFOVRange : Condition
     {
         private static int _enemyLayerMask = 1 << 6;
 
         private Transform _transform;
         private Animator _animator;
 
-        public CheckEnemyInFOVRange(Transform transform)
+        public IsEnemyInFOVRange(Transform transform)
         {
             _transform = transform;
             _animator = transform.GetComponent<Animator>();
@@ -18,12 +18,10 @@ namespace Jesushf
         public override NodeStatus OnUpdate()
         {
             BTGuard guard = _transform.GetComponent<BTGuard>();
-            Transform t = guard.Target;
-            if (t == null)
+            Transform target = guard.Target;
+            if (target == null)
             {
-                Collider[] colliders = Physics.OverlapSphere(
-                    _transform.position, BTGuard.FOV_RANGE, _enemyLayerMask);
-
+                Collider[] colliders = Physics.OverlapSphere(_transform.position, BTGuard.FOV_RANGE, _enemyLayerMask);
                 if (colliders.Length > 0)
                 {
                     guard.Target = colliders[0].transform;

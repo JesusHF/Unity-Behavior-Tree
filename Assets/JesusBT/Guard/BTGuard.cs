@@ -22,12 +22,12 @@ public class BTGuard : MonoBehaviour
         {
             new Sequence(new List<Node>
             {
-                new CheckEnemyInAttackRange(this.transform),
+                new IsEnemyInAttackRange(this.transform),
                 new ActionAttack(this.transform),
             }),
             new Sequence(new List<Node>
             {
-                new CheckEnemyInFOVRange(this.transform),
+                new IsEnemyInFOVRange(this.transform),
                 new ActionGoToTarget(this.transform),
             }),
             new Sequence(new List<Node>
