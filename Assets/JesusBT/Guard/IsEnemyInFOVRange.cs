@@ -7,12 +7,10 @@ namespace Jesushf
         private static int _enemyLayerMask = 1 << 6;
 
         private Transform _transform;
-        private Animator _animator;
 
         public IsEnemyInFOVRange(Transform transform)
         {
             _transform = transform;
-            _animator = transform.GetComponent<Animator>();
         }
 
         public override NodeStatus OnUpdate()
@@ -25,7 +23,6 @@ namespace Jesushf
                 if (colliders.Length > 0)
                 {
                     guard.Target = colliders[0].transform;
-                    _animator.SetBool("Walking", true);
                     return NodeStatus.Success;
                 }
 
