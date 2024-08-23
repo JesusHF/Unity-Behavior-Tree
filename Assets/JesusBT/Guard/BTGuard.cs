@@ -18,11 +18,13 @@ public class BTGuard : MonoBehaviour
 
     private void Awake()
     {
+        SimpleCondition isEnemyInAttackRange = new SimpleCondition(() => IsEnemyInAttackRange(Target));
+
         Node root = new Selector(new List<Node>
         {
             new Sequence(new List<Node>
             {
-                new IsEnemyInAttackRange(this.transform),
+                isEnemyInAttackRange,
                 new ActionAttack(this.transform),
             }),
             new Sequence(new List<Node>
@@ -45,5 +47,15 @@ public class BTGuard : MonoBehaviour
     private void Update()
     {
         _behaviorTree.UpdateTree();
+    }
+
+    private bool IsEnemyInAttackRange(Transform enemy)
+    {
+        if (enemy == null)
+        {
+            return false;
+        }
+        float distance = Vector3.Distance(enemy.position, this.transform.position);
+        return distance <= ATTACK_RANGE;
     }
 }

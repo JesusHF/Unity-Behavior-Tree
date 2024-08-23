@@ -54,7 +54,4 @@ namespace Jesushf
             return NodeStatus.Success;
         }
     }
-
-    public abstract class Action : Node { }
-    public abstract class Condition : Node { }
 }
