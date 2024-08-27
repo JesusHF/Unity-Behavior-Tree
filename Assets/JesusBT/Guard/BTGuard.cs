@@ -34,8 +34,7 @@ public class BTGuard : MonoBehaviour
             }),
             new Sequence(new List<Node>
             {
-                new ActionDelay(PATROL_WAIT_TIME),
-                new ActionPatrol(this.transform, _waypoints),
+                new Delayer(new ActionPatrol(this.transform, _waypoints), PATROL_WAIT_TIME),
             })
         });
 
