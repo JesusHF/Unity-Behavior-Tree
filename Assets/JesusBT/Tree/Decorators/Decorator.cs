@@ -15,15 +15,5 @@
             base.Restart();
             _child.Restart();
         }
-
-        public override void OnEnter()
-        {
-            _child.OnEnter();
-        }
-
-        public override void OnExit()
-        {
-            _child.OnExit();
-        }
     }
 }

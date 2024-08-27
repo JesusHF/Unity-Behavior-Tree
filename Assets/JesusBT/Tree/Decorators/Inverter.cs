@@ -6,7 +6,7 @@ namespace Jesushf
 
         public override NodeStatus OnUpdate()
         {
-            NodeStatus state = _child.OnUpdate();
+            NodeStatus state = _child.Evaluate();
             if (state == NodeStatus.Running)
             {
                 _state = state;

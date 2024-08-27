@@ -40,7 +40,7 @@ namespace Jesushf
                 return _state;
             }
 
-            _state = _child.OnUpdate();
+            _state = _child.Evaluate();
             return _state;
         }
     }
