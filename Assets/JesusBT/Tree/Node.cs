@@ -15,11 +15,6 @@ namespace Jesushf
         private bool _isFinished = false;
 
         public void SetParent(Node parent) { _parent = parent; }
-        public virtual void Restart()
-        {
-            _isStarted = false;
-            _isFinished = false;
-        }
 
         public NodeStatus Evaluate()
         {
@@ -44,6 +39,12 @@ namespace Jesushf
 
             _state = state;
             return _state;
+        }
+
+        public virtual void Restart()
+        {
+            _isStarted = false;
+            _isFinished = false;
         }
 
         public virtual void OnEnter() { }

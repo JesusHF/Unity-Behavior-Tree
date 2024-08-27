@@ -12,6 +12,12 @@ namespace Jesushf
             _waitTime = waitTime;
         }
 
+        public override void Restart()
+        {
+            base.Restart();
+            _waitCounter = 0f;
+        }
+
         public override NodeStatus OnUpdate()
         {
             _waitCounter += Time.deltaTime;
