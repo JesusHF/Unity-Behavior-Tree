@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Jesushf
 {
-    public class ActionDelay : Action
+    public class Delayer : Decorator
     {
         private float _waitTime = 0f; // in seconds
         private float _waitCounter = 0f;
 
-        public ActionDelay(float waitTime)
+        public Delayer(Node child, float time) : base(child)
         {
-            _waitTime = waitTime;
+            Assert.IsNotNull(_child);
+            _waitTime = time;
         }
 
         public override void Restart()
@@ -21,12 +23,14 @@ namespace Jesushf
         public override NodeStatus OnUpdate()
         {
             _waitCounter += Time.deltaTime;
-            if (_waitCounter >= _waitTime)
+            if (_waitCounter < _waitTime)
             {
-                _waitCounter = 0f;
-                return NodeStatus.Success;
+                _state = NodeStatus.Running;
+                return _state;
             }
-            return NodeStatus.Running;
+
+            _state = _child.Evaluate();
+            return _state;
         }
     }
 }
