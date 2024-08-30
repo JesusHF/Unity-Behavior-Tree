@@ -36,6 +36,7 @@ namespace Jesushf
             _counter += Time.deltaTime;
             if (_counter >= _duration)
             {
+                _child.OnExit();
                 _state = _stopStatus;
                 return _state;
             }
