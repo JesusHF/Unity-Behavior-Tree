@@ -29,15 +29,15 @@ namespace Example
                 isEnemyInAttackRange,
                 new ActionAttack(this.transform),
             }),
-            new Sequence(new List<Node>
-            {
-                new IsEnemyInFOVRange(this.transform),
-                new ActionGoToTarget(this.transform),
-            }),
-            new Sequence(new List<Node>
-            {
-                new Delayer(new ActionPatrol(this.transform, _waypoints), PATROL_WAIT_TIME),
-            })
+            //new RandomSelector(new List<Node>
+            //{
+                new Sequence(new List<Node>
+                {
+                    new IsEnemyInFOVRange(this.transform),
+                    new ActionGoToTarget(this.transform),
+                }),
+                new Delayer(new ActionPatrol(this.transform, _waypoints), PATROL_WAIT_TIME)
+            //}),
         });
 
             Assert.IsNotNull(root);
@@ -58,6 +58,11 @@ namespace Example
             }
             float distance = Vector3.Distance(enemy.position, this.transform.position);
             return distance <= ATTACK_RANGE;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(this.transform.position, FOV_RANGE);
         }
     }
 }
