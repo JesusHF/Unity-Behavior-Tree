@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Jesushf
+namespace JHFBehaviorTree
 {
     public class Interrupter : Decorator
     {

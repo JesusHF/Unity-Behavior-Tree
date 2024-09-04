@@ -1,4 +1,4 @@
-namespace Jesushf
+namespace JHFBehaviorTree
 {
     public class BehaviorTree
     {

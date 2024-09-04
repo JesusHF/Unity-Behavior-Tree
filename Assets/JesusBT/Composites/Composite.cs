@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Jesushf
+namespace JHFBehaviorTree
 {
     public abstract class Composite : Node
     {

@@ -1,6 +1,7 @@
 using UnityEngine;
+using JHFBehaviorTree;
 
-namespace Jesushf
+namespace Example
 {
     public class IsEnemyInFOVRange : Condition
     {

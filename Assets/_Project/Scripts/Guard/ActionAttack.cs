@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using JHFBehaviorTree;
 
-namespace Jesushf
+namespace Example
 {
     public class ActionAttack : Action
     {

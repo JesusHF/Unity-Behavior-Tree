@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-namespace Jesushf
+namespace JHFBehaviorTree
 {
-    public class Sequence : Composite
+    public class Selector : Composite
     {
-        public Sequence(List<Node> children) : base(children) { }
+        public Selector(List<Node> children) : base(children) { }
 
         public override NodeStatus OnUpdate()
         {
@@ -15,14 +15,14 @@ namespace Jesushf
                     case NodeStatus.Running:
                         _state = NodeStatus.Running;
                         return _state;
-                    case NodeStatus.Failure:
-                        _state = NodeStatus.Failure;
+                    case NodeStatus.Success:
+                        _state = NodeStatus.Success;
                         return _state;
                     default: break;
                 }
             }
 
-            _state = NodeStatus.Success;
+            _state = NodeStatus.Failure;
             return _state;
         }
     }

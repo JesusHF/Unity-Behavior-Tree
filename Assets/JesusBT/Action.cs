@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Assertions;
 
-namespace Jesushf
+namespace JHFBehaviorTree
 {
     public abstract class Action : Node { }
 
