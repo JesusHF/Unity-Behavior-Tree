@@ -23,22 +23,19 @@ namespace Example
             SimpleCondition isEnemyInAttackRange = new SimpleCondition(() => IsEnemyInAttackRange(Target));
 
             Node root = new Selector(new List<Node>
-        {
-            new Sequence(new List<Node>
             {
-                isEnemyInAttackRange,
-                new ActionAttack(this.transform),
-            }),
-            //new RandomSelector(new List<Node>
-            //{
+                new Sequence(new List<Node>
+                {
+                    isEnemyInAttackRange,
+                    new ActionAttack(this.transform),
+                }),
                 new Sequence(new List<Node>
                 {
                     new IsEnemyInFOVRange(this.transform),
                     new ActionGoToTarget(this.transform),
                 }),
                 new Delayer(new ActionPatrol(this.transform, _waypoints), PATROL_WAIT_TIME)
-            //}),
-        });
+            });
 
             Assert.IsNotNull(root);
             _behaviorTree = new BehaviorTree(root);
