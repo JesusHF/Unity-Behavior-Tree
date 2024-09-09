@@ -7,7 +7,8 @@ namespace JHFBehaviorTree
 
     public class SimpleAction : Action
     {
-        private Func<NodeStatus> _action;
+        private Func<NodeStatus> _action = null;
+        private System.Action _voidAction = null;
 
         public SimpleAction(Func<NodeStatus> action)
         {
@@ -15,9 +16,21 @@ namespace JHFBehaviorTree
             Assert.IsNotNull(_action);
         }
 
+        public SimpleAction(System.Action action)
+        {
+            _voidAction = action;
+            Assert.IsNotNull(_voidAction);
+        }
+
         public override NodeStatus OnUpdate()
         {
-            return _action();
+            if (_action != null)
+            {
+                return _action();
+            }
+            
+            _voidAction?.Invoke();
+            return NodeStatus.Success;
         }
     }
 }
